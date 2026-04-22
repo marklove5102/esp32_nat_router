@@ -2,9 +2,15 @@
 
 This is a firmware to use the ESP32 as WiFi NAT router. It routes between the network of the AP interface and the STA or ETH interface as uplink network. It can also work as a VPN router using WireGuard as uplink.
 
-If you have a **W32-ET01 board** and you are looking for a plain ESP32 **Ethernet AP**, or correctly for an **Ethernet to WiFi Layer 2 Bridge**, check out [esp32_eth_wifi_bridge](https://github.com/martin-ger/esp32_eth_wifi_bridge). If you are looking for an ESP32 router with reverse direction, i.e. **WiFi STA as uplink** (Internet) and **Ethernet as downlink** (LAN), check out [esp32_ethernet_router](https://github.com/martin-ger/esp32_ethernet_router).
+## Other WiFi Router/Repeater Projects
+Starting from this code base I started several spin-off projects with slightly differrent scope. These are all (ab)using the ESP32 as a minimal network device. 
 
-**Use cases:**
+- **Layer 2 WiFi Repeater**: Finally we have it - the **WiFi Repeater**, a layer 2 network bridge between STA and AP (no NAT, no DHCP, just plain frame forwarding in one broadcast domain, i.e. one IP network segment). You currently find it's sources in the [esp32_wifi_repeater](https://github.com/martin-ger/esp32_nat_router/tree/esp32_wifi_repeater) branch of this repo. It is ESP-IDF source-only and still under development, but it works generally with good performance on an ESP32c3 and makes it the world's first >2$ WiFi extender. Feel free to test it - docs are not updated, but usage is basically the same as for the router.
+- **WiFi Access Point**: If you have a **W32-ET01 board** and you are looking for a plain ESP32 **Ethernet AP**, or correctly for an **Ethernet to WiFi Layer 2 Bridge**, check out [esp32_eth_wifi_bridge](https://github.com/martin-ger/esp32_eth_wifi_bridge). 
+- **Ethernet Router**: If you are looking for an ESP32 NAT router with reverse direction, i.e. **WiFi STA as uplink** (Internet) and **Ethernet as downlink** (LAN), check out [esp32_ethernet_router](https://github.com/martin-ger/esp32_ethernet_router). Here I also experiment with support for the common WIZnet W5500 SPI Ethernet NIC.
+- **PPPoE Router**: If you ever consider using the ESP32 as an open-source ISP router, have a look at the [esp32_PPPoE_router](https://github.com/martin-ger/esp32_PPPoE_router). It adds PPPoE as additional Ethernet uplink option. So it could be used directly on an ISP modem.
+
+## Use cases for the NAT Router:
 - Simple range extender for an existing WiFi network
 - An additional WiFi network with different SSID/password and restricted access for guests or IoT devices
 - VPN-Router using WireGuard
